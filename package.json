@@ -1,0 +1,28 @@
+{
+  "name": "wayfree-news-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebancabreraa/wayfree-news-api.git"
+  },
+  "author": "Esteban Cabrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebancabreraa/wayfree-news-api/issues"
+  },
+  "homepage": "https://github.com/estebancabreraa/wayfree-news-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3"
+  }
+}
