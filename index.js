@@ -4,9 +4,11 @@ const path = require('path')
 const app = express()
 
 const db = require('./src/js/queries')
+const cors = require('cors')
 
 require('dotenv').config({path: __dirname + '/.env'})
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -23,3 +25,4 @@ app.listen(process.env.PORT, () => {
 })
 
 app.get('/actions', db.getAction)
+app.post('/users', db.getUserCredentials)

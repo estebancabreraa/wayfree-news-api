@@ -10,8 +10,21 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 })
 
+const getUserCredentials = (request, response) => {
+  const {email, password} = request.body
+
+  console.log(email)
+  console.log(password)
+  pool.query(process.env.GET_ACTION_QUERY, (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getAction = (request, response) => {
-  pool.query('SELECT * FROM actions ORDER BY action_id ASC', (error, results) => {
+  pool.query(process.env.GET_ACTION_QUERY, (error, results) => {
     if (error) {
       throw error
     }
@@ -20,5 +33,6 @@ const getAction = (request, response) => {
 }
 
 module.exports = {
+  getUserCredentials,
   getAction
 }
