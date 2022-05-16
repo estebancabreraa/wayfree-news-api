@@ -13,13 +13,18 @@ const pool = new Pool({
 const getUserCredentials = (request, response) => {
   const {email, password} = request.body
 
-  console.log(email)
-  console.log(password)
-  pool.query(process.env.GET_ACTION_QUERY, (error, results) => {
+  pool.query(process.env.GET_USER_CREDENTIALS_QUERY, [email, password], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).json(results.rows)
+    
+    console.log(results)
+    //If query found more than one result with email, password parameters...
+    if (results.rows.length > 0){ 
+     
+      response.status(200).json({status: true})
+        
+    } else {response.status(200).json({status: false})}
   })
 }
 
