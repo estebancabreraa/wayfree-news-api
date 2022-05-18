@@ -28,6 +28,15 @@ const getUserCredentials = (request, response) => {
   })
 }
 
+const getArticles = (request, response) => {
+  pool.query(process.env.GET_ARTICLES_QUERY, (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getAction = (request, response) => {
   pool.query(process.env.GET_ACTION_QUERY, (error, results) => {
     if (error) {
@@ -37,7 +46,44 @@ const getAction = (request, response) => {
   })
 }
 
+const insertArticleContent = (request, response) => {
+  const {file_name} = request.body
+
+  pool.query(process.env.INSERT_CONTENT_QUERY, [file_name], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const insertImageSet = (request, response) => {
+  const {images} = request.body
+
+  pool.query(process.env.INSERT_IMAGE_SET_QUERY, [images], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const insertArticle = (request, response) => {
+  const {title, date, category, content, image_set, author} = request.body
+
+  pool.query(process.env.INSERT_ARTICLE_QUERY, [title, date, category, content, image_set, author], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 module.exports = {
   getUserCredentials,
-  getAction
+  getArticles,
+  getAction,
+  insertArticleContent,
+  insertImageSet,
+  insertArticle
 }
