@@ -18,7 +18,6 @@ const getUserCredentials = (request, response) => {
       throw error
     }
     
-    console.log(results)
     //If query found more than one result with email, password parameters...
     if (results.rows.length > 0){ 
      
@@ -33,7 +32,9 @@ const getArticles = (request, response) => {
     if (error) {
       throw error
     }
+    console.log("Sending articles to client...")
     response.status(200).json(results.rows)
+    console.log("Done.")
   })
 }
 
