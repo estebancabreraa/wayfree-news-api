@@ -33,7 +33,7 @@ const getArticles = (request, response) => {
       throw error
     }
     console.log("Sending articles to client...")
-    response.status(200).json(results.rows)
+    response.status(200).json(results.rows[0])
     console.log("Done.")
   })
 }
