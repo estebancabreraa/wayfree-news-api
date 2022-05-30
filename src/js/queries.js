@@ -47,6 +47,17 @@ const getAction = (request, response) => {
   })
 }
 
+const getCategories = (request, response) => {
+  pool.query(process.env.GET_CATEGORIES_QUERY, (error, results) => {
+    if (error) {
+      throw error
+    }
+    console.log("Sending articles to client...")
+    response.status(200).json(results.rows[0])
+    console.log("Done.")
+  })
+}
+
 const insertArticleContent = (request, response) => {
   const {file_name} = request.body
 
@@ -95,6 +106,7 @@ module.exports = {
   getUserCredentials,
   getArticles,
   getAction,
+  getCategories,
   insertArticleContent,
   insertImageSet,
   insertArticle,

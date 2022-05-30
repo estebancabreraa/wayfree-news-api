@@ -26,6 +26,7 @@ app.listen(process.env.PORT, () => {
 
 app.get('/actions', db.getAction)
 app.get('/articles', db.getArticles)
+app.get('/categories', db.getCategories)
 app.post('/users', db.getUserCredentials)
 app.post('/create-content', db.insertArticleContent)
 app.post('/create-image-set', db.insertImageSet)
