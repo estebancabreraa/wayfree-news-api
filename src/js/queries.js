@@ -32,7 +32,7 @@ const getArticles = (request, response) => {
       throw error
     }
     console.log("Sending articles to client...")
-    response.status(200).json(results.rows[0])
+    response.status(200).json(results.rows)
     console.log("Done.")
   })
 }
@@ -89,7 +89,6 @@ const getUserID = (request, response) => {
   })
 }
 
-
 const insertArticleContent = (request, response) => {
   const {file_name} = request.body
 
@@ -113,9 +112,9 @@ const insertImageSet = (request, response) => {
 }
 
 const insertArticle = (request, response) => {
-  const {title, date, category, author} = request.body
+  const {title, category, author} = request.body
 
-  pool.query(process.env.INSERT_ARTICLE_QUERY, [title, date, category, content, image_set, author], (error, results) => {
+  pool.query(process.env.INSERT_ARTICLE_QUERY, [title, category, author], (error, results) => {
     if (error) {
       throw error
     }
