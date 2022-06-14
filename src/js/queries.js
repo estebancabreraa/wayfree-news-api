@@ -133,6 +133,17 @@ const updateArticle = (request, response) => {
   })
 }
 
+const updateArticleStatus = (request, response) => {
+  const {article_id, status} = request.body
+
+  pool.query(process.env.UPDATE_ARTICLE_QUERY, [article_id, status], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 module.exports = {
   getUserCredentials,
   getArticles,
@@ -142,5 +153,6 @@ module.exports = {
   insertArticleContent,
   insertImageSet,
   insertArticle,
-  updateArticle
+  updateArticle,
+  updateArticleStatus
 }
