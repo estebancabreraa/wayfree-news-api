@@ -136,7 +136,7 @@ const updateArticle = (request, response) => {
 const updateArticleStatus = (request, response) => {
   const {article_id, status} = request.body
 
-  pool.query(process.env.UPDATE_ARTICLE_QUERY, [article_id, status], (error, results) => {
+  pool.query(process.env.ENABLE_DISABLE_ARTICLE_QUERY, [article_id, status], (error, results) => {
     if (error) {
       throw error
     }
